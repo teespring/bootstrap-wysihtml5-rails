@@ -5867,12 +5867,11 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
 
       if (keyCode === wysihtml5.ENTER_KEY && !wysihtml5.browser.insertsLineBreaksOnReturn()) {
         composer.commands.exec("insertLineBreak");
-        event.preventDefault();
       }
+
+     // keypress doesn't fire when you hit backspace
+     dom.observe(composer.element.ownerDocument, "keydown", keyDown);
     }
-    
-    // keypress doesn't fire when you hit backspace
-    dom.observe(composer.element.ownerDocument, "keydown", keyDown);
   };
 })(wysihtml5);/**
  * Force rerendering of a given element
@@ -7472,14 +7471,7 @@ wysihtml5.Commands = Base.extend(
   
   wysihtml5.commands.insertLineBreak = {
     exec: function(composer, command) {
-      if (composer.commands.support(command)) {
-        composer.doc.execCommand(command, false, null);
-        if (!wysihtml5.browser.autoScrollsToCaret()) {
-          composer.selection.scrollIntoView();
-        }
-      } else {
-        composer.commands.exec("insertHTML", LINE_BREAK);
-      }
+      composer.commands.exec("insertHTML", LINE_BREAK);
     },
 
     state: function() {
