@@ -9136,7 +9136,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
         });
 
         dialog.observe("cancel", function() {
-          that.editor.focus(false);
+          that.editor.focus({});
           that.editor.fire("cancel:dialog", { command: command, dialogContainer: dialogElement, commandLink: link });
         });
       }
@@ -9166,7 +9166,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
 
     _execCommand: function(command, commandValue) {
       // Make sure that composer is focussed (false => don't move caret to the end)
-      this.editor.focus(false);
+      this.editor.focus({});
 
       this.composer.commands.exec(command, commandValue);
       this._updateLinkStates();
