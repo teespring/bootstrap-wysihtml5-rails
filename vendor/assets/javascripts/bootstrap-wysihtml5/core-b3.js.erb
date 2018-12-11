@@ -56,7 +56,7 @@
                       "<h3 class='modal-title'>" + locale.link.insert + "</h3>" +
                     "</div>" +
                     "<div class='modal-body'>" +
-                      "<input value='http://' class='bootstrap-wysihtml5-insert-link-url form-control'>" +
+                      "<input placeholder='http://' class='bootstrap-wysihtml5-insert-link-url form-control'>" +
                       "<label class='checkbox'> <input type='checkbox' class='bootstrap-wysihtml5-insert-link-target' checked>" + locale.link.target + "</label>" +
                     "</div>" +
                     "<div class='modal-footer'>" +
@@ -81,7 +81,7 @@
                       "<h3 class='modal-title'>" + locale.image.insert + "</h3>" +
                     "</div>" +
                     "<div class='modal-body'>" +
-                      "<input value='http://' class='bootstrap-wysihtml5-insert-image-url form-control'>" +
+                      "<input placeholder='http://link-to-your-image.png' class='bootstrap-wysihtml5-insert-image-url form-control'>" +
                     "</div>" +
                     "<div class='modal-footer'>" +
                       "<a href='#' class='btn btn-default' data-dismiss='modal'>" + locale.image.cancel + "</a>" +
@@ -278,7 +278,7 @@
                 var activeButton = $(this).hasClass("wysihtml5-command-active");
 
                 if (!activeButton) {
-                    self.editor.currentView.element.focus(false);
+                    self.editor.currentView.element.focus({});
                     caretBookmark = self.editor.composer.selection.getBookmark();
                     insertImageModal.appendTo('body').modal('show');
                     insertImageModal.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
@@ -340,7 +340,7 @@
                 var activeButton = $(this).hasClass("wysihtml5-command-active");
 
                 if (!activeButton) {
-                    self.editor.currentView.element.focus(false);
+                    self.editor.currentView.element.focus({});
                     caretBookmark = self.editor.composer.selection.getBookmark();
                     insertLinkModal.appendTo('body').modal('show');
                     insertLinkModal.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
@@ -496,7 +496,7 @@
                 target: "Open link in new window"
             },
             image: {
-                insert: "Insert image",
+                insert: "Insert image URL",
                 cancel: "Cancel"
             },
             html: {
